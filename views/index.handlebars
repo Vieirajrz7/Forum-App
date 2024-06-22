@@ -1,0 +1,25 @@
+<a href="/question"><button class="btn btn-primary px-5">Perguntar</button></a>
+
+{{#each row}}
+
+<div class="card mt-4 mb-3">
+    <div class="card-body">
+        <h2 class="float-start" style="display: inline;">{{title}}</h1>
+            <small class="float-end">Date: {{created_at}}</small>
+            <a href="/question/{{id}}"><button class="form-control btn btn-primary mt-3">Ver Respostas</button></a>
+    </div>
+</div>
+{{else}}
+<h2 style="color: #ccc;" class="mt-4">Nenhuma Pergunta Ainda...</h2>
+{{/each}}
+
+{{!-- <div class="card mt-4">
+    <div class="card-body">
+        <h1>titulo</h1>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquid ad accusantium perferendis, odit aut
+            delectus eius adipisci repellendus doloribus ratione quidem iure voluptatum sint unde similique soluta
+            assumenda alias. Recusandae.</p>
+        <small>Date: DD/MM/AAAA</small>
+        <button class="form-control btn btn-primary mt-3">Respoder</button>
+    </div>
+</div> --}}

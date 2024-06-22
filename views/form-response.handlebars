@@ -1,0 +1,13 @@
+<div class="card">
+    <div class="card-body">
+        <h2 class="mb-3">Resposta:</h2>
+        <form action="/response/save-response" method="POST">
+            <input type="hidden" name="_id" id="_id" value="{{_id}}">
+
+            <textarea rows="7" name="contentRes" id="contentRes"
+                class="form-control border border-secondary-subtle"></textarea>
+
+            <button style="padding: 8px 24px;" class="btn btn-primary mt-3" type="submit">Enviar</button>
+        </form>
+    </div>
+</div>
