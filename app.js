@@ -8,10 +8,11 @@ const flash = require('connect-flash');
 const path = require('path');
 // const { Client } = require('pg');
 const admin = require('./routes/admin');
+const users = require('./routes/users');
 const pool = require('./config/Database');
 
 
-//TASK: VALIDAÇÕES DOS FORMULARIOS E ENCRIPTAÇÃO DAS SENHAS!!!!!!!!!!!!!!
+//TASK: ENCRIPTAÇÃO DAS SENHAS!!!!!!!!!!!!!!
 // Querys
 
 // Configs
@@ -41,6 +42,7 @@ app.set('view engine', 'handlebars');
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use('/admin', admin);
+app.use('/users', users);
 
 // Rotas
 
@@ -68,18 +70,43 @@ app.get('/question', (req, res) => {
 
 app.post('/question/add', async (req, res) => {
 
-    try {
-        const sqlAdd = `INSERT INTO questions(title, content) VALUES ('${req.body.title}', '${req.body.content}')`;
-        await pool.query(sqlAdd)
-        req.flash('success_msg', 'Pergunta Enviada com Sucesso');
-        res.redirect('/');
+    let erros = [];
 
-    } catch {
-        req.flash('err_msg', 'Houve um erro ao Enviar a Pergunta!!!');
-        res.redirect('/')
-
+    if (!req.body.title || typeof req.body.title == undefined || req.body.title == null) {
+        erros.push({
+            errorText: "Campo de Titulo Inválido!!!"
+        });
     }
 
+    if (!req.body.content || typeof req.body.content == undefined || req.body.content == null) {
+        erros.push({
+            errorText: "Campo de Conteúdo Inválido!!!"
+        });
+    }
+
+    if (req.body.title.length <= 5) {
+        erros.push({
+            errorText: "Campo do Titulo Muito Curto!!!"
+        })
+    };
+
+
+    if (erros.length > 0) {
+        res.render('form-question', { erros: erros });
+    } else {
+
+        try {
+            const sqlAdd = `INSERT INTO questions(title, content) VALUES ('${req.body.title}', '${req.body.content}')`;
+            await pool.query(sqlAdd)
+            req.flash('success_msg', 'Pergunta Enviada com Sucesso');
+            res.redirect('/');
+
+        } catch {
+            req.flash('err_msg', 'Houve um erro ao Enviar a Pergunta!!!');
+            res.redirect('/')
+
+        }
+    }
 });
 
 app.get('/question/:id', async (req, res) => {
@@ -132,46 +159,21 @@ app.get('/response/form-response/:id', async (req, res) => {
 
 });
 
-app.post('/response/save-response', async (req, res) => {
-
+app.post('/response/save-response/:id', async (req, res) => {
     try {
-        const sqlSave = `INSERT INTO responses(content_res, id_question) VALUES ('${req.body.contentRes}', ${req.body._id});`;
-        await pool.query(sqlSave);
+        const sqlSave = `INSERT INTO responses(content_res, id_question) VALUES
+             ('${req.body.contentRes}', ${req.body._id});`;
 
+        await pool.query(sqlSave);
         req.flash('success_msg', 'Resposta Enviada com Sucesso!');
         res.redirect(`/question/${req.body._id}`);
     } catch (err) {
 
         req.flash('err_msg', 'Houve algum erro');
         res.redirect('/');
-
     }
 
 });
-
-//Register
-
-app.get('/form-register', (req, res) => {
-    res.render('form-register');
-});
-
-app.post('/register-user', async (req, res) => {
-
-
-    try {
-        const sql = `INSERT INTO users(username, email, password) VALUES
-         ('${req.body.username}', '${req.body.email}', '${req.body.password}')`;
-        await pool.query(sql).then(() => {
-            req.flash('success_msg', 'Conta Registrada com Sucesso!');
-            res.redirect('/')
-        })
-    } catch (err) {
-        req.flash('err_msg', 'Houve algum erro ao se cadastrar!!!');
-        res.redirect('/');
-    }
-
-})
-
 
 const PORT = 3334;
 app.listen(PORT, () => {

@@ -1,6 +1,12 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{errorText}}</div>
+{{else}}
+
+{{/each}}
+
 <h2>Registrar-se</h2>
 
-<form action="/register-user" method="POST">
+<form action="/users/register-user" method="POST">
 
 <label for="username">Usuário:</label>
 <input type="text" name="username" id="username" placeholder="Nome de Usuário" class="form-control mt-2">
