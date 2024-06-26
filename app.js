@@ -11,7 +11,7 @@ const admin = require('./routes/admin');
 const pool = require('./config/Database');
 
 
-//TASK: FAZER O ESQUEMA DE REGISTER E LOGIN!!!!!!!!!!!!
+//TASK: VALIDAÇÕES DOS FORMULARIOS E ENCRIPTAÇÃO DAS SENHAS!!!!!!!!!!!!!!
 // Querys
 
 // Configs
@@ -149,6 +149,30 @@ app.post('/response/save-response', async (req, res) => {
 
 });
 
+//Register
+
+app.get('/form-register', (req, res) => {
+    res.render('form-register');
+});
+
+app.post('/register-user', async (req, res) => {
+
+
+    try {
+        const sql = `INSERT INTO users(username, email, password) VALUES
+         ('${req.body.username}', '${req.body.email}', '${req.body.password}')`;
+        await pool.query(sql).then(() => {
+            req.flash('success_msg', 'Conta Registrada com Sucesso!');
+            res.redirect('/')
+        })
+    } catch (err) {
+        req.flash('err_msg', 'Houve algum erro ao se cadastrar!!!');
+        res.redirect('/');
+    }
+
+})
+
+
 const PORT = 3334;
 app.listen(PORT, () => {
     console.log('Server Listening in Port 3334...');
@@ -158,32 +182,32 @@ app.listen(PORT, () => {
 // MODO ANTIGO DE FAZER AS QUERYS NAS ROTAS ROTA PRINCIPAL AQUI.
 
 // app.get('/', (req, res) => {
-    // const client = new Client({
-    //     user: 'postgres',
-    //     host: 'localhost',
-    //     database: 'prod-app-dev',
-    //     password: password
-    // });
+// const client = new Client({
+//     user: 'postgres',
+//     host: 'localhost',
+//     database: 'prod-app-dev',
+//     password: password
+// });
 
-    // try {
+// try {
 
-    //     await client.connect();
+//     await client.connect();
 
-    //     const sql = `SELECT * FROM questions ORDER BY created_at DESC`;
-    //     const result = await client.query(sql);
+//     const sql = `SELECT * FROM questions ORDER BY created_at DESC`;
+//     const result = await client.query(sql);
 
-    //     const questionsData = result.rows.map((row) => {
-    //         return { ...row, formattedCreatedAt: row.created_at.toLocaleDateString('pt-BR') };
-    //     });
+//     const questionsData = result.rows.map((row) => {
+//         return { ...row, formattedCreatedAt: row.created_at.toLocaleDateString('pt-BR') };
+//     });
 
-    //     res.render('index', { row: questionsData });
-    // } catch (err) {
-    //     req.flash('err_msg', 'Houve algum erro');
-    //     res.redirect('/');
-    //     console.log(err)
-    // } finally {
-    //     await client.end();
-    //     console.log('Client Disconnected succefully!');
-    // }
+//     res.render('index', { row: questionsData });
+// } catch (err) {
+//     req.flash('err_msg', 'Houve algum erro');
+//     res.redirect('/');
+//     console.log(err)
+// } finally {
+//     await client.end();
+//     console.log('Client Disconnected succefully!');
+// }
 
 // })
