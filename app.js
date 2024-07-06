@@ -13,7 +13,7 @@ const passport = require('passport');
 require('./config/auth')(passport);
 const { isLogged } = require('./helpers/user_verifications'); // -Verificação se o usuário esta logado.
 
-//TASK:FAZER UMA EXPLICAÇÃO NO GITHUB DO PROJETO DO PQ EU FIZ ELE COLOCAR TBM IMAGENS!!!!!!!!
+//TASK:
 
 // -Configurações
 app.use(express.json());
