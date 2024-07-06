@@ -1,15 +1,24 @@
+{{#each erros}}
+<div class="alert alert-danger">{{errorText}}</div>
+{{else}}
+
+{{/each}}
+
 <h2>Registrar-se</h2>
 
-<form action="/register-user" method="POST">
+<form action="/users/register-user" method="POST">
 
-<label for="username">Usuário:</label>
-<input type="text" name="username" id="username" placeholder="Nome de Usuário" class="form-control mt-2">
+    <label for="username">Usuário:</label>
+    <input type="text" name="username" id="username" placeholder="Nome de Usuário" class="form-control mt-2 mb-2"
+        style="box-shadow: 3px 3px 2px 0px rgba(79,103,181,0.52);">
 
-<label for="email">Email:</label>
-<input type="email" name="email" id="email" placeholder="Insira um Email Válido" class="form-control mt-2">
+    <label for="email">Email:</label>
+    <input type="email" name="email" id="email" placeholder="Insira um Email Válido" class="form-control mt-2 mb-2"
+        style="box-shadow: 3px 3px 2px 0px rgba(79,103,181,0.52);">
 
-<label for="password">Senha:</label>
-<input type="password" name="password" id="password" placeholder="Insira uma Senha" class="form-control mt-2">
+    <label for="password">Senha:</label>
+    <input type="password" name="password" id="password" placeholder="Insira uma Senha" class="form-control mt-2 mb-2"
+        style="box-shadow: 3px 3px 2px 0px rgba(79,103,181,0.52);">
 
-<button type="submit" class="btn btn-primary mt-3 px-5 float-end">Registrar</button>
+    <button type="submit" class="btn btn-primary mt-3 px-5 float-end">Registrar</button>
 </form>

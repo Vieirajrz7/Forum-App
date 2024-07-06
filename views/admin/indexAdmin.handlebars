@@ -1,17 +1,20 @@
+<small style="color:#ccc;">Painel de Admin</small>
 {{#each row}}
-
-<div class="card mt-4 mb-3">
-    <div class="card-body">
-        <h2 class="float-start" style="display: inline;">{{title}}</h1>
+<div class="card mt-4 mb-3" style="box-shadow: 3px 3px 2px 0px rgba(79,103,181,0.52);">
+    <div class="card-body" style="overflow: hidden;">
+        <h2 class="float-start">{{title}}</h2>
             <small class="float-end">Date: {{created_at}}</small>
 
             <form action="/admin/delete_question" method="POST">
 
                 <input type="hidden" name="id" id="id" value="{{id}}">
-                <button class="form-control btn btn-danger mt-3" type="submit">Excluir Pergunta</button>
+                <br> <br>
+                <button class=" btn btn-danger mt-3 float-end" type="submit">Excluir Pergunta</button>
             </form>
-
-            <a href="/admin/admin-responses/{{id}}"><button class="form-control btn btn-primary mt-3">Ver Respostas</button></a>
+            
+            <a href="/admin/admin-responses/{{id}}">
+                <button class=" btn btn-primary mt-3" style="padding: 6px 20px;">Ver Respostas</button>
+            </a>
     </div>
 </div>
 {{else}}

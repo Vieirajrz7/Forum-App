@@ -1,3 +1,9 @@
+{{#each erros}}
+    <div class="alert alert-danger">{{errorText}}</div>
+{{else}}
+
+{{/each}}
+
 <h2>Fazer Pergunta: </h2>
 
 <form action="/question/add" method="POST">

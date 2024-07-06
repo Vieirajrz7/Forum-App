@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="dark" style="background: #212529;">
   <div class="container-fluid">
     <a href="/" style="margin-left: 10px;"><img src="/img/perguntas-e-respostas.png" alt="" width="70" height="60"></a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
@@ -8,9 +8,16 @@
 
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link" href="/form-register" style="font-size: 20px; margin-left: 20px; font-weight: 500;">Registrar</a>
+        {{#if user}}
+        <a href="/users/logout" class="nav-link"
+          style="font-size: 20px; margin-left: 20px; font-weight: 500;">Logout</a>
+        {{else}}
 
-        <a class="nav-link" href="#" style="font-size: 20px; font-weight: 500;">Login</a>
+
+        <a class="nav-link" href="/users/form-register"
+          style="font-size: 20px; margin-left: 20px; font-weight: 500;">Registrar</a>
+        <a class="nav-link" href="/users/form-login" style="font-size: 20px; font-weight: 500;">Login</a>
+        {{/if}}
       </div>
     </div>
   </div>
