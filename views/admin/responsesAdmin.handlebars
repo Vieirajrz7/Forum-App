@@ -1,8 +1,8 @@
 <small style="color: #ccc; margin-left: 3px;">Painel de Admin</small>
 
 <h1>Respostas sobre a pergunta:</h1>
-{{#each row}}
-<div class="card mt-4">
+{{#each rowQuestion}}
+<div class="card mt-4" style="box-shadow: 3px 3px 2px 0px rgba(79,103,181,0.52);">
     <div class="card-body">
         <h2>{{title}}</h2>
         <small>Descrição:</small>
@@ -14,9 +14,9 @@
 {{/each}}
 <h2 class="mt-3 mb-3">Respostas:</h2>
 
-{{#each rowExibir}}
+{{#each rowResponses}}
 
-<div class="card mt-4 mb-3">
+<div class="card mt-4 mb-3" style="box-shadow: 3px 3px 2px 0px rgba(79,103,181,0.52);">
     <div class="card-body">
 
         <p style="font-weight: 500; font-size: 18px;">{{content_res}}</p>

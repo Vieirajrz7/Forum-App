@@ -1,12 +1,23 @@
+<div class="jumbotron mb-4" style="background: #212529; padding: 40px; border-radius: 10px; text-align: center;
+ box-shadow: 3px 3px 2px 0px rgba(79,103,181,0.52);">
+    <h1 class="display-4" style="text-align: center; font-weight: 400;">Seja Bem-Vindo ao Meu Fórum</h1>
+    <p class="lead mt-3" style="text-align: center; margin: 0 30px; font-size: 26px;">Fórum feito para fins didáticos
+        desenvolvido com a linguágem Javascript e o framework NodeJs e o banco de dados PostgreSQL
+        e algumas outras técnologias como Handlebars, Bootstrap...</p>
+
+    <a class="btn btn-primary btn-lg mt-4" href="https://github.com/Vieirajrz7/Forum-App" target="_blank"
+        role="button">Repositório no GitHub</a>
+</div>
+
 <a href="/question"><button class="btn btn-primary px-5">Perguntar</button></a>
 
 {{#each row}}
 
-<div class="card mt-4 mb-3">
-    <div class="card-body">
+<div class="card mt-4 mb-3" data-bs-theme="dark" style="box-shadow: 3px 3px 2px 0px rgba(79,103,181,0.52);">
+    <div class="card-body" style="overflow: hidden;">
         <h2 class="float-start" style="display: inline;">{{title}}</h1>
-            <small class="float-end">Date: {{created_at}}</small>
-            <a href="/question/{{id}}"><button class="form-control btn btn-primary mt-3">Ver Respostas</button></a>
+            <small class="float-end" style="margin-top: 70px;">Date: {{created_at}}</small> <br> <br>
+            <a href="/question/{{id}}"><button class=" btn btn-primary mt-3">Ver Respostas</button></a>
     </div>
 </div>
 {{else}}

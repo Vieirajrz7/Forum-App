@@ -8,9 +8,15 @@
     <link rel="stylesheet" href="/css/bootstrap.css">
 </head>
 
-<body>
+<body data-bs-theme="dark" style="background: #00042e;">
     {{>_navbar}}
     {{>_msg}}
+
+    {{#if error}}
+    <div class="alert alert-danger">{{error}}</div>
+    {{else}}
+    {{/if}}
+
     <div class="container mt-4">
         {{{body}}}
     </div>
