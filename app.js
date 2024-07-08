@@ -155,8 +155,9 @@ app.post('/response/save-response/:id', isLogged, async (req, res) => { // -Salv
     }
 });
 // -Servidor
-app.listen(process.env.PORT ? Number(process.env.PORT) : 3334, () => {
-    console.log('Server Running');
+const port = process.env.PORT || 3334;
+app.listen(port, () => {
+    console.log('Server Listening on Port: ' + port);
 });
 
 
