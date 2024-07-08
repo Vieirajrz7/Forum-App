@@ -155,10 +155,10 @@ app.post('/response/save-response/:id', isLogged, async (req, res) => { // -Salv
     }
 });
 // -Servidor
-const PORT = 3334;
-app.listen(PORT, () => {
-    console.log('Server Listening in Port 3334...');
+app.listen(process.env.PORT ? Number(process.env.PORT) : 3334, () => {
+    console.log('Server Running');
 });
+
 
 
 // MODO ANTIGO DE FAZER AS QUERYS NAS ROTAS ROTA PRINCIPAL AQUI.
